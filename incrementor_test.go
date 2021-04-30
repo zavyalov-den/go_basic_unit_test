@@ -39,6 +39,8 @@ func TestIncrementor(t *testing.T) {
 	}
 
 	// 3. testing setMaximumValue
+	// 3.1 basic case
+	testIncrementor.number = 0
 	newMaximumValue := randomUint8(testIncrementor.maximumValue)
 	testIncrementor.setMaximumValue(newMaximumValue)
 
@@ -46,6 +48,17 @@ func TestIncrementor(t *testing.T) {
 		t.Errorf("setMaximumValue failed, expected %v, got %v", testIncrementor.maximumValue, newMaximumValue)
 	} else {
 		t.Logf("setMaximumValue  succeeded, expected %v, got %v", testIncrementor.maximumValue, newMaximumValue)
+	}
+	// 3.2. testing case if current number is higher than a given maxValue.
+	testIncrementor.maximumValue = math.MaxInt8
+	testIncrementor.number = testIncrementor.maximumValue / 2
+
+	testIncrementor.setMaximumValue(testIncrementor.maximumValue + 1)
+
+	if testIncrementor.maximumValue != testIncrementor.number {
+		t.Errorf("setMaximumValue failed, expected %v, got %v", testIncrementor.number, testIncrementor.maximumValue)
+	} else {
+		t.Logf("setMaximumValue  succeeded, expected %v, got %v", testIncrementor.number, testIncrementor.maximumValue)
 	}
 
 	// 4. testing incrementNumber method.
