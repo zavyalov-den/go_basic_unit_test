@@ -31,7 +31,7 @@ func (i *incrementor) incrementNumber() {
 // if the new value is higher than current number's value, setMaximumValue sets incrementor's maximum value
 // to current number's value.
 func (i *incrementor) setMaximumValue(newMaximumValue uint8) {
-	if i.number > newMaximumValue {
+	if newMaximumValue < i.number {
 		i.maximumValue = i.number
 	} else {
 		i.maximumValue = newMaximumValue
